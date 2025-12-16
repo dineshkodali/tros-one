@@ -5,7 +5,7 @@ import path from 'path'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
   return {
-    base: '/tros/', // 🔴 IMPORTANT for GitHub Pages
+    base: '/tros-one/', // 🔴 IMPORTANT for GitHub Pages
     plugins: [react()],
     server: {
       port: 3000,
