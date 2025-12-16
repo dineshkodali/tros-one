@@ -1,0 +1,7 @@
+{
+  "name": "TROS One",
+  "description": "A web-based inventory management system with role-based access, Mono Orange theming, and advanced data visualization.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
