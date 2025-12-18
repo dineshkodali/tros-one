@@ -623,46 +623,43 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
           {collectionName === 'products' && canAssign && <button onClick={() => setIsBulkAssignOpen(true)} className="flex-1 md:flex-none h-11 px-6 bg-white border border-emerald-200 text-emerald-700 font-bold rounded-xl hover:bg-emerald-50 transition-colors flex items-center justify-center gap-2"><Layers size={18} /> Bulk</button>}
           {canCreate && <button onClick={() => openModal()} className="flex-1 md:flex-none h-11 px-6 bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 hover:scale-105 transition-all flex items-center justify-center gap-2"><Plus size={18} /> Add New</button>}
         </div> */}
-         <div className="w-full flex flex-col gap-4 md:flex-row md:items-center md:w-auto">
+        <div className="w-full flex flex-col gap-4 md:flex-row md:items-center md:w-auto">
+          {/* Secondary actions */}
+          <div className="flex gap-2 w-full md:w-auto">
+            <button
+              onClick={() => setIsImportModalOpen(true)}
+              className="flex-1 md:flex-none h-9 px-3 bg-white border border-emerald-100 text-emerald-700 text-sm font-semibold rounded-lg hover:bg-emerald-50 flex items-center justify-center gap-2"
+            >
+              <FileUp size={16} /> Import
+            </button>
 
-  {/* Secondary actions */}
-  <div className="flex gap-2 w-full md:w-auto">
-    <button
-      onClick={() => setIsImportModalOpen(true)}
-      className="flex-1 md:flex-none h-9 px-3 bg-white border border-emerald-100 text-emerald-700 text-sm font-semibold rounded-lg hover:bg-emerald-50 flex items-center justify-center gap-2"
-    >
-      <FileUp size={16} /> Import
-    </button>
+            <button
+              onClick={() => setIsExportModalOpen(true)}
+              className="flex-1 md:flex-none h-9 px-3 bg-white border border-emerald-100 text-emerald-700 text-sm font-semibold rounded-lg hover:bg-emerald-50 flex items-center justify-center gap-2"
+            >
+              <Download size={16} /> Export
+            </button>
 
-    <button
-      onClick={() => setIsExportModalOpen(true)}
-      className="flex-1 md:flex-none h-9 px-3 bg-white border border-emerald-100 text-emerald-700 text-sm font-semibold rounded-lg hover:bg-emerald-50 flex items-center justify-center gap-2"
-    >
-      <Download size={16} /> Export
-    </button>
+            {collectionName === "products" && canAssign && (
+              <button
+                onClick={() => setIsBulkAssignOpen(true)}
+                className="flex-1 md:flex-none h-9 px-3 bg-white border border-emerald-100 text-emerald-700 text-sm font-semibold rounded-lg hover:bg-emerald-50 flex items-center justify-center gap-2"
+              >
+                <Layers size={16} /> Bulk
+              </button>
+            )}
+          </div>
 
-    {collectionName === 'products' && canAssign && (
-      <button
-        onClick={() => setIsBulkAssignOpen(true)}
-        className="flex-1 md:flex-none h-9 px-3 bg-white border border-emerald-100 text-emerald-700 text-sm font-semibold rounded-lg hover:bg-emerald-50 flex items-center justify-center gap-2"
-      >
-        <Layers size={16} /> Bulk
-      </button>
-    )}
-  </div>
-
-  {/* Primary action */}
-  {canCreate && (
-    <button
-      onClick={() => openModal()}
-      className="w-full md:w-auto h-12 px-6 bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/30 hover:bg-emerald-700 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
-    >
-      <Plus size={18} /> Add New
-    </button>
-  )}
-</div>
-
-
+          {/* Primary action */}
+          {canCreate && (
+            <button
+              onClick={() => openModal()}
+              className="w-full md:w-auto h-12 px-6 bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/30 hover:bg-emerald-700 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+            >
+              <Plus size={18} /> Add New
+            </button>
+          )}
+        </div>
       </div>
 
       <FilterBar
