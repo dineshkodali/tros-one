@@ -88,7 +88,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
   );
 
   return (
-    <div className="space-y-8 animate-in fade-in pb-10 px-2 md:px-0">
+    <div className="space-y-8 animate-in fade-in pb-24 md:pb-10 px-2 md:px-0">
+
       
       {/* Welcome Section */}
       <div className="flex justify-between items-end">

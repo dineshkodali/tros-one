@@ -523,7 +523,8 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
       />
 
       {/* COMPACT MOBILE INVOICE STRIPS */}
-      <div className="block md:hidden space-y-4">
+      <div className="block md:hidden space-y-4 pb-[calc(8rem+env(safe-area-inset-bottom))]">
+
          {loading ? <div className="text-center py-12 text-emerald-400 font-medium">Loading orders...</div> : processedOrders.map(order => (
            <div key={order.id} className="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden active:scale-98 transition-transform" onClick={() => setSelectedOrderId(order.id)}>
               <div className="p-5">
