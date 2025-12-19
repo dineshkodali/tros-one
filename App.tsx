@@ -214,7 +214,8 @@ const MainLayout: React.FC = () => {
            </div>
            <div className="flex items-center gap-3">
               <button onClick={() => setCurrentView(View.SCANNER)} className="p-2 bg-emerald-50 rounded-xl text-emerald-700 hover:bg-emerald-100 active:scale-95 transition-all"><ScanBarcode size={20} /></button>
-              <button onClick={() => logout()} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-xs font-bold border border-gray-200">{currentUser?.email?.[0].toUpperCase()}</button>
+              <button className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-xs font-bold border border-gray-200">{currentUser?.email?.[0].toUpperCase()}</button>
+              <LogOut  onClick={() => logout()} size={18} className="text-emerald-300 group-hover:text-red-500 transition-colors" />
            </div>
         </header>
 

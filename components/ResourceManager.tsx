@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { db, createSystemUser } from "../firebase";
+import { createPortal } from "react-dom";
+
 import {
   collection,
   onSnapshot,
@@ -956,333 +958,340 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
       </div>
 
       {/* Modals & Dialogs */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-emerald-950/40 backdrop-blur-sm animate-fade-in p-4 md:p-0">
-          <div className="bg-white w-[95%] max-h-[90vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-zoom-in md:w-full md:h-auto md:max-w-4xl border border-white/50">
-            <div className="flex justify-between items-center p-6 border-b border-emerald-50 shrink-0 bg-emerald-50/30">
-              <div>
-                <h3 className="text-2xl font-bold text-[#064e3b]">
-                  {editingItem ? "Edit" : "Add New"}{" "}
-                  {collectionName.slice(0, -1)}
-                </h3>
-                <p className="text-sm text-emerald-600/70 mt-1">
-                  {userRole === UserRole.VENDOR &&
-                  collectionName === "products" &&
-                  editingItem
-                    ? "Manage stock or request changes."
-                    : "Fill in the details below to save."}
-                </p>
-              </div>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="p-2 bg-white rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 shadow-sm"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <div className="px-6 pt-2 shrink-0 bg-white border-b border-emerald-50 overflow-x-auto">
-              <div className="flex gap-6">
-                <button
-                  onClick={() => setActiveTab("basic")}
-                  className={`pb-3 text-sm font-bold transition-all border-b-2 ${
-                    activeTab === "basic"
-                      ? "border-emerald-600 text-emerald-800"
-                      : "border-transparent text-gray-400 hover:text-emerald-600"
-                  }`}
-                >
-                  Basic Info
-                </button>
-                <button
-                  onClick={() => setActiveTab("details")}
-                  className={`pb-3 text-sm font-bold transition-all border-b-2 ${
-                    activeTab === "details"
-                      ? "border-emerald-600 text-emerald-800"
-                      : "border-transparent text-gray-400 hover:text-emerald-600"
-                  }`}
-                >
-                  Details & Specs
-                </button>
-                <button
-                  onClick={() => setActiveTab("extra")}
-                  className={`pb-3 text-sm font-bold transition-all border-b-2 ${
-                    activeTab === "extra"
-                      ? "border-emerald-600 text-emerald-800"
-                      : "border-transparent text-gray-400 hover:text-emerald-600"
-                  }`}
-                >
-                  Docs & Custom
-                </button>
-              </div>
-            </div>
-
-            <div className="p-8 flex-1 overflow-y-auto custom-scrollbar bg-[#f8fafc]">
-              {createdCredentials ? (
-                <div className="bg-white border border-emerald-100 rounded-2xl p-8 text-center max-w-sm mx-auto shadow-lg">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-600">
-                    <CheckCircle size={32} />
-                  </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">
-                    Account Created!
-                  </h4>
-                  <p className="text-gray-500 text-sm mb-6">
-                    Credentials generated successfully.
+      {isModalOpen &&
+        createPortal(
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-emerald-950/40 backdrop-blur-sm animate-fade-in p-4 md:p-0">
+            <div className="bg-white w-[95%] max-h-[90vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-zoom-in md:w-full md:h-auto md:max-w-4xl border border-white/50">
+              <div className="flex justify-between items-center p-6 border-b border-emerald-50 shrink-0 bg-emerald-50/30">
+                <div>
+                  <h3 className="text-2xl font-bold text-[#064e3b]">
+                    {editingItem ? "Edit" : "Add New"}{" "}
+                    {collectionName.slice(0, -1)}
+                  </h3>
+                  <p className="text-sm text-emerald-600/70 mt-1">
+                    {userRole === UserRole.VENDOR &&
+                    collectionName === "products" &&
+                    editingItem
+                      ? "Manage stock or request changes."
+                      : "Fill in the details below to save."}
                   </p>
-                  <div className="bg-emerald-50 rounded-xl p-4 text-left space-y-3 mb-6">
-                    <div>
-                      <label className="text-xs font-bold text-emerald-600 uppercase">
-                        Login
-                      </label>
-                      <div className="font-mono font-bold text-gray-800">
-                        {createdCredentials.email}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="text-xs font-bold text-emerald-600 uppercase">
-                        Password
-                      </label>
-                      <div className="font-mono font-bold text-gray-800">
-                        {createdCredentials.password}
-                      </div>
-                    </div>
-                  </div>
+                </div>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="p-2 bg-white rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 shadow-sm"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="px-6 pt-2 shrink-0 bg-white border-b border-emerald-50 overflow-x-auto">
+                <div className="flex gap-6">
                   <button
-                    onClick={() => {
-                      setIsModalOpen(false);
-                      setCreatedCredentials(null);
-                    }}
-                    className="w-full py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-colors"
+                    onClick={() => setActiveTab("basic")}
+                    className={`pb-3 text-sm font-bold transition-all border-b-2 ${
+                      activeTab === "basic"
+                        ? "border-emerald-600 text-emerald-800"
+                        : "border-transparent text-gray-400 hover:text-emerald-600"
+                    }`}
                   >
-                    Done
+                    Basic Info
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("details")}
+                    className={`pb-3 text-sm font-bold transition-all border-b-2 ${
+                      activeTab === "details"
+                        ? "border-emerald-600 text-emerald-800"
+                        : "border-transparent text-gray-400 hover:text-emerald-600"
+                    }`}
+                  >
+                    Details & Specs
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("extra")}
+                    className={`pb-3 text-sm font-bold transition-all border-b-2 ${
+                      activeTab === "extra"
+                        ? "border-emerald-600 text-emerald-800"
+                        : "border-transparent text-gray-400 hover:text-emerald-600"
+                    }`}
+                  >
+                    Docs & Custom
                   </button>
                 </div>
-              ) : (
-                <form
-                  id="resourceForm"
-                  onSubmit={handleSave}
-                  className="space-y-8"
-                >
-                  {activeTab === "basic" && (
-                    <>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {fields.map((field) => (
-                          <div
-                            key={field.key}
-                            className={
-                              field.type === "textarea" ? "md:col-span-2" : ""
-                            }
-                          >
-                            {renderInput(
-                              field.key,
-                              field.label,
-                              field.type,
-                              "",
-                              true,
-                              field.options
-                            )}
-                          </div>
-                        ))}
+              </div>
+
+              <div className="p-8 flex-1 overflow-y-auto custom-scrollbar bg-[#f8fafc]">
+                {createdCredentials ? (
+                  <div className="bg-white border border-emerald-100 rounded-2xl p-8 text-center max-w-sm mx-auto shadow-lg">
+                    <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-600">
+                      <CheckCircle size={32} />
+                    </div>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">
+                      Account Created!
+                    </h4>
+                    <p className="text-gray-500 text-sm mb-6">
+                      Credentials generated successfully.
+                    </p>
+                    <div className="bg-emerald-50 rounded-xl p-4 text-left space-y-3 mb-6">
+                      <div>
+                        <label className="text-xs font-bold text-emerald-600 uppercase">
+                          Login
+                        </label>
+                        <div className="font-mono font-bold text-gray-800">
+                          {createdCredentials.email}
+                        </div>
                       </div>
-                      {collectionName === "vendors" && !editingItem && (
-                        <div className="p-4 bg-white rounded-xl border border-emerald-100 flex items-center gap-3 shadow-sm">
-                          <input
-                            type="checkbox"
-                            checked={createUserAccount}
-                            onChange={(e) =>
-                              setCreateUserAccount(e.target.checked)
-                            }
-                            className="w-5 h-5 accent-emerald-600 rounded cursor-pointer"
-                          />
-                          <div className="flex-1">
-                            <label
-                              className="text-sm font-bold text-gray-900 block cursor-pointer"
-                              onClick={() =>
-                                setCreateUserAccount(!createUserAccount)
+                      <div>
+                        <label className="text-xs font-bold text-emerald-600 uppercase">
+                          Password
+                        </label>
+                        <div className="font-mono font-bold text-gray-800">
+                          {createdCredentials.password}
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setIsModalOpen(false);
+                        setCreatedCredentials(null);
+                      }}
+                      className="w-full py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-colors"
+                    >
+                      Done
+                    </button>
+                  </div>
+                ) : (
+                  <form
+                    id="resourceForm"
+                    onSubmit={handleSave}
+                    className="space-y-8"
+                  >
+                    {activeTab === "basic" && (
+                      <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {fields.map((field) => (
+                            <div
+                              key={field.key}
+                              className={
+                                field.type === "textarea" ? "md:col-span-2" : ""
                               }
                             >
-                              Create Login Account
-                            </label>
-                            <p className="text-xs text-gray-500">
-                              Allow this vendor to access the dashboard.
-                            </p>
-                          </div>
-                          {createUserAccount && (
+                              {renderInput(
+                                field.key,
+                                field.label,
+                                field.type,
+                                "",
+                                true,
+                                field.options
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                        {collectionName === "vendors" && !editingItem && (
+                          <div className="p-4 bg-white rounded-xl border border-emerald-100 flex items-center gap-3 shadow-sm">
                             <input
-                              type="password"
-                              value={userPassword}
-                              onChange={(e) => setUserPassword(e.target.value)}
-                              placeholder="Password"
-                              className="h-10 px-3 border border-emerald-100 rounded-lg text-sm w-48 outline-none focus:border-emerald-500"
+                              type="checkbox"
+                              checked={createUserAccount}
+                              onChange={(e) =>
+                                setCreateUserAccount(e.target.checked)
+                              }
+                              className="w-5 h-5 accent-emerald-600 rounded cursor-pointer"
                             />
+                            <div className="flex-1">
+                              <label
+                                className="text-sm font-bold text-gray-900 block cursor-pointer"
+                                onClick={() =>
+                                  setCreateUserAccount(!createUserAccount)
+                                }
+                              >
+                                Create Login Account
+                              </label>
+                              <p className="text-xs text-gray-500">
+                                Allow this vendor to access the dashboard.
+                              </p>
+                            </div>
+                            {createUserAccount && (
+                              <input
+                                type="password"
+                                value={userPassword}
+                                onChange={(e) =>
+                                  setUserPassword(e.target.value)
+                                }
+                                placeholder="Password"
+                                className="h-10 px-3 border border-emerald-100 rounded-lg text-sm w-48 outline-none focus:border-emerald-500"
+                              />
+                            )}
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {activeTab === "details" && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {collectionName === "products" && (
+                          <>
+                            <div className="col-span-2 md:col-span-1">
+                              {renderInput(
+                                "sku",
+                                "Stock Keeping Unit (SKU)",
+                                "text",
+                                "SKU-000"
+                              )}
+                            </div>
+                            <div className="col-span-2 md:col-span-1">
+                              {renderInput(
+                                "barcode",
+                                "Barcode Number",
+                                "text",
+                                "EAN-13 / UPC"
+                              )}
+                            </div>
+                            <div className="col-span-2 md:col-span-1">
+                              {renderInput(
+                                "costPrice",
+                                "Cost Price",
+                                "number",
+                                "0.00"
+                              )}
+                            </div>
+                            <div className="col-span-2 md:col-span-1">
+                              {renderInput(
+                                "brand",
+                                "Brand / Manufacturer",
+                                "text",
+                                "Brand Name"
+                              )}
+                            </div>
+                          </>
+                        )}
+                        <div className="col-span-full">
+                          {renderInput(
+                            "description",
+                            "Detailed Description",
+                            "textarea",
+                            "Enter full details here..."
                           )}
                         </div>
-                      )}
-                    </>
-                  )}
-                  {activeTab === "details" && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {collectionName === "products" && (
-                        <>
-                          <div className="col-span-2 md:col-span-1">
-                            {renderInput(
-                              "sku",
-                              "Stock Keeping Unit (SKU)",
-                              "text",
-                              "SKU-000"
-                            )}
-                          </div>
-                          <div className="col-span-2 md:col-span-1">
-                            {renderInput(
-                              "barcode",
-                              "Barcode Number",
-                              "text",
-                              "EAN-13 / UPC"
-                            )}
-                          </div>
-                          <div className="col-span-2 md:col-span-1">
-                            {renderInput(
-                              "costPrice",
-                              "Cost Price",
-                              "number",
-                              "0.00"
-                            )}
-                          </div>
-                          <div className="col-span-2 md:col-span-1">
-                            {renderInput(
-                              "brand",
-                              "Brand / Manufacturer",
-                              "text",
-                              "Brand Name"
-                            )}
-                          </div>
-                        </>
-                      )}
-                      <div className="col-span-full">
-                        {renderInput(
-                          "description",
-                          "Detailed Description",
-                          "textarea",
-                          "Enter full details here..."
-                        )}
                       </div>
-                    </div>
-                  )}
-                  {activeTab === "extra" && (
-                    <div className="space-y-6">
-                      <div className="bg-white p-6 rounded-xl border border-emerald-100 shadow-sm text-center">
-                        <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-600">
-                          <Upload size={20} />
-                        </div>
-                        <h4 className="font-bold text-gray-900 mb-1">
-                          Upload Documents
-                        </h4>
-                        <p className="text-xs text-gray-500 mb-4">
-                          PDF, JPG, or PNG files supported.
-                        </p>
-                        <label className="cursor-pointer inline-flex items-center gap-2 px-6 py-2.5 bg-emerald-600 text-white rounded-lg font-bold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200">
-                          Choose File{" "}
-                          <input
-                            type="file"
-                            className="hidden"
-                            onChange={handleDocUpload}
-                          />
-                        </label>
-                      </div>
-                      <div className="bg-white p-6 rounded-xl border border-emerald-100 shadow-sm">
-                        <div className="flex justify-between items-center mb-4">
-                          <h4 className="font-bold text-gray-900 flex items-center gap-2">
-                            <Layers size={16} className="text-emerald-500" />{" "}
-                            Custom Fields
+                    )}
+                    {activeTab === "extra" && (
+                      <div className="space-y-6">
+                        <div className="bg-white p-6 rounded-xl border border-emerald-100 shadow-sm text-center">
+                          <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-600">
+                            <Upload size={20} />
+                          </div>
+                          <h4 className="font-bold text-gray-900 mb-1">
+                            Upload Documents
                           </h4>
-                          <button
-                            type="button"
-                            onClick={handleAddCustomField}
-                            className="text-xs bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg font-bold hover:bg-emerald-100 transition-colors flex items-center gap-1"
-                          >
-                            <Plus size={12} /> Add Field
-                          </button>
-                        </div>
-                        {customFields.length === 0 && (
-                          <p className="text-xs text-gray-400 italic text-center py-2">
-                            No custom fields added.
+                          <p className="text-xs text-gray-500 mb-4">
+                            PDF, JPG, or PNG files supported.
                           </p>
-                        )}
-                        {customFields.map((field, i) => (
-                          <div key={i} className="flex gap-2 mb-2">
+                          <label className="cursor-pointer inline-flex items-center gap-2 px-6 py-2.5 bg-emerald-600 text-white rounded-lg font-bold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200">
+                            Choose File{" "}
                             <input
-                              type="text"
-                              placeholder="Key"
-                              value={field.key}
-                              onChange={(e) => {
-                                const n = [...customFields];
-                                n[i].key = e.target.value;
-                                setCustomFields(n);
-                              }}
-                              className="flex-1 h-9 px-3 border border-gray-200 rounded-lg text-sm"
+                              type="file"
+                              className="hidden"
+                              onChange={handleDocUpload}
                             />
-                            <input
-                              type="text"
-                              placeholder="Value"
-                              value={field.value}
-                              onChange={(e) => {
-                                const n = [...customFields];
-                                n[i].value = e.target.value;
-                                setCustomFields(n);
-                              }}
-                              className="flex-1 h-9 px-3 border border-gray-200 rounded-lg text-sm"
-                            />
+                          </label>
+                        </div>
+                        <div className="bg-white p-6 rounded-xl border border-emerald-100 shadow-sm">
+                          <div className="flex justify-between items-center mb-4">
+                            <h4 className="font-bold text-gray-900 flex items-center gap-2">
+                              <Layers size={16} className="text-emerald-500" />{" "}
+                              Custom Fields
+                            </h4>
+                            <button
+                              type="button"
+                              onClick={handleAddCustomField}
+                              className="text-xs bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg font-bold hover:bg-emerald-100 transition-colors flex items-center gap-1"
+                            >
+                              <Plus size={12} /> Add Field
+                            </button>
                           </div>
-                        ))}
+                          {customFields.length === 0 && (
+                            <p className="text-xs text-gray-400 italic text-center py-2">
+                              No custom fields added.
+                            </p>
+                          )}
+                          {customFields.map((field, i) => (
+                            <div key={i} className="flex gap-2 mb-2">
+                              <input
+                                type="text"
+                                placeholder="Key"
+                                value={field.key}
+                                onChange={(e) => {
+                                  const n = [...customFields];
+                                  n[i].key = e.target.value;
+                                  setCustomFields(n);
+                                }}
+                                className="flex-1 h-9 px-3 border border-gray-200 rounded-lg text-sm"
+                              />
+                              <input
+                                type="text"
+                                placeholder="Value"
+                                value={field.value}
+                                onChange={(e) => {
+                                  const n = [...customFields];
+                                  n[i].value = e.target.value;
+                                  setCustomFields(n);
+                                }}
+                                className="flex-1 h-9 px-3 border border-gray-200 rounded-lg text-sm"
+                              />
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </form>
+                    )}
+                  </form>
+                )}
+              </div>
+              {!createdCredentials && (
+                <div className="p-6 border-t border-emerald-50 bg-white flex justify-between gap-3 shrink-0">
+                  {userRole === UserRole.VENDOR &&
+                    collectionName === "products" &&
+                    editingItem && (
+                      <button
+                        type="button"
+                        onClick={() => setIsRequestChangeOpen(true)}
+                        className="flex items-center gap-2 text-sm font-bold text-amber-600 bg-amber-50 px-4 py-2 rounded-xl hover:bg-amber-100 transition-colors"
+                      >
+                        <MessageSquare size={16} /> Request Changes
+                      </button>
+                    )}
+
+                  <div className="flex gap-3 ml-auto">
+                    <button
+                      onClick={() => setIsModalOpen(false)}
+                      className="px-6 py-3 rounded-xl font-bold text-gray-500 hover:bg-gray-50 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      form="resourceForm"
+                      type="submit"
+                      disabled={isCreatingUser}
+                      className="px-8 py-3 bg-[#064e3b] text-white rounded-xl font-bold shadow-xl shadow-emerald-900/20 hover:bg-emerald-900 hover:scale-105 transition-all disabled:opacity-50 disabled:scale-100"
+                    >
+                      {editingItem ? "Save Updates" : "Create Entry"}
+                    </button>
+                  </div>
+                </div>
               )}
             </div>
-            {!createdCredentials && (
-              <div className="p-6 border-t border-emerald-50 bg-white flex justify-between gap-3 shrink-0">
-                {userRole === UserRole.VENDOR &&
-                  collectionName === "products" &&
-                  editingItem && (
-                    <button
-                      type="button"
-                      onClick={() => setIsRequestChangeOpen(true)}
-                      className="flex items-center gap-2 text-sm font-bold text-amber-600 bg-amber-50 px-4 py-2 rounded-xl hover:bg-amber-100 transition-colors"
-                    >
-                      <MessageSquare size={16} /> Request Changes
-                    </button>
-                  )}
+          </div>,
+          document.body
+        )}
 
-                <div className="flex gap-3 ml-auto">
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className="px-6 py-3 rounded-xl font-bold text-gray-500 hover:bg-gray-50 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    form="resourceForm"
-                    type="submit"
-                    disabled={isCreatingUser}
-                    className="px-8 py-3 bg-[#064e3b] text-white rounded-xl font-bold shadow-xl shadow-emerald-900/20 hover:bg-emerald-900 hover:scale-105 transition-all disabled:opacity-50 disabled:scale-100"
-                  >
-                    {editingItem ? "Save Updates" : "Create Entry"}
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {isViewModalOpen && viewingItem && (
-        <ViewDetailsModal
-          isOpen={isViewModalOpen}
-          onClose={() => setIsViewModalOpen(false)}
-          data={viewingItem}
-          type={collectionName.slice(0, -1) as any}
-        />
-      )}
+      {isViewModalOpen &&
+        viewingItem &&
+        createPortal(
+          <ViewDetailsModal
+            isOpen={isViewModalOpen}
+            onClose={() => setIsViewModalOpen(false)}
+            data={viewingItem}
+            type={collectionName.slice(0, -1) as any}
+          />,
+          document.body
+        )}
 
       {isRequestChangeOpen && editingItem && (
         <RequestChangeModal
@@ -1309,17 +1318,21 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
         columns={displayColumns}
       />
 
-      {assignDialogState.isOpen && assignDialogState.source && (
-        <AssignDialog
-          isOpen={assignDialogState.isOpen}
-          onClose={() =>
-            setAssignDialogState({ isOpen: false, source: null, type: null })
-          }
-          sourceId={assignDialogState.source.id}
-          sourceName={assignDialogState.source.name}
-          type={assignDialogState.type}
-        />
-      )}
+      {assignDialogState.isOpen &&
+        assignDialogState.source &&
+        createPortal(
+          <AssignDialog
+            isOpen={assignDialogState.isOpen}
+            onClose={() =>
+              setAssignDialogState({ isOpen: false, source: null, type: null })
+            }
+            sourceId={assignDialogState.source.id}
+            sourceName={assignDialogState.source.name}
+            type={assignDialogState.type}
+          />,
+          document.body
+        )}
+
       {isBulkAssignOpen && (
         <BulkAssignDialog
           isOpen={isBulkAssignOpen}
@@ -1328,15 +1341,19 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
           targetType="VENDOR"
         />
       )}
-      <ConfirmationModal
-        isOpen={isDeleteModalOpen}
-        title="Delete Item"
-        message="Are you sure you want to remove this item? This action cannot be undone."
-        onConfirm={confirmDelete}
-        onCancel={() => setIsDeleteModalOpen(false)}
-        confirmText="Delete"
-        isDestructive={true}
-      />
+      {isDeleteModalOpen &&
+        createPortal(
+          <ConfirmationModal
+            isOpen={isDeleteModalOpen}
+            title="Delete Item"
+            message="Are you sure you want to remove this item? This action cannot be undone."
+            onConfirm={confirmDelete}
+            onCancel={() => setIsDeleteModalOpen(false)}
+            confirmText="Delete"
+            isDestructive={true}
+          />,
+          document.body
+        )}
     </div>
   );
 };
