@@ -762,7 +762,7 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
         {/* Mobile Cart Drawer */}
         {isMobileCartOpen && (
           <div className="fixed inset-0 z-50 bg-black/60 flex items-end justify-center md:hidden p-0 animate-fade-in">
-            <div className="bg-white w-full h-[90vh] rounded-t-2xl flex flex-col animate-slide-up overflow-hidden">
+            <div className="bg-white w-full h-[70vh] rounded-t-2xl flex flex-col animate-slide-up overflow-hidden">
               <CartContent />
             </div>
           </div>
