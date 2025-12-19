@@ -3,7 +3,7 @@ import { X, Save, Check, Search, Store, User } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, query, where, getDocs, updateDoc, doc, onSnapshot, documentId } from 'firebase/firestore';
 import { useNotification } from '../contexts/NotificationContext';
-
+import {createPortal} from 'react-dom';
 interface AssignDialogProps {
   isOpen: boolean;
   onClose: () => void;
@@ -97,9 +97,9 @@ const AssignDialog: React.FC<AssignDialogProps> = ({ isOpen, onClose, sourceId, 
 
   const filteredItems = items.filter(i => i.name?.toLowerCase().includes(search.toLowerCase()));
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white w-full max-w-md rounded-xl shadow-2xl flex flex-col max-h-[80vh] animate-zoom-in">
+  return createPortal(
+    <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+    <div className="bg-white w-full max-w-md rounded-xl shadow-2xl flex flex-col max-h-[80vh] animate-zoom-in">
         <div className="p-5 border-b flex justify-between items-center bg-gray-50 rounded-t-xl">
           <div>
             <h3 className="font-bold text-lg text-gray-900">
@@ -166,7 +166,8 @@ const AssignDialog: React.FC<AssignDialogProps> = ({ isOpen, onClose, sourceId, 
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
