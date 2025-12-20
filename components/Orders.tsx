@@ -338,7 +338,7 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
   const OrderDetailsModal = () => {
     if (!activeOrder) return null;
     return createPortal(
-      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-emerald-950/40 backdrop-blur-sm animate-fade-in p-4 print:p-0 print:bg-white print:fixed print:inset-0 print:z-[9999]">
+      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-emerald-950/40 backdrop-blur-sm animate-fade-in p-2 sm:p-3 md:p-4 print:p-0 print:bg-white print:fixed print:inset-0 print:z-[9999]">
         <div className="bg-white w-[95%] max-h-[90vh] md:max-w-4xl rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-zoom-in border border-white/50 print:border-none print:shadow-none print:w-full print:max-w-none print:rounded-none print:max-h-full print:h-full">
           {/* Header Actions (Hidden on Print) */}
           <div className="flex justify-between items-center p-6 border-b border-emerald-50 shrink-0 bg-emerald-50/30 print:hidden">
@@ -361,33 +361,45 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
           {/* Printable Invoice Area - ID USED BY CSS PRINT QUERY */}
           <div
             id="printable-area"
-            className="flex-1 overflow-y-auto p-8 custom-scrollbar bg-[#f8fafc] print:bg-white print:overflow-visible"
+            className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-8 custom-scrollbar bg-[#f8fafc] print:bg-white print:overflow-visible"
           >
             {/* Invoice Header */}
-            <div className="bg-white rounded-xl border border-emerald-100 p-8 shadow-sm mb-6 print:border-none print:shadow-none print:p-0">
-              <div className="flex flex-col gap-6 md:flex-row md:justify-between md:items-start mb-8 pb-6 border-b-2 border-emerald-100">
+            <div
+              className="
+    bg-white rounded-xl border border-emerald-100
+    p-3 sm:p-4 md:p-8
+    shadow-sm mb-6
+    print:border-none print:shadow-none print:p-0
+  "
+            >
+              <div className="flex flex-col gap-3 md:gap-6 md:flex-row md:justify-between md:items-start mb-4 md:mb-6 pb-4 md:pb-5 border-b border-emerald-100">
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-8 h-8 bg-[#064e3b] rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 bg-[#064e3b] rounded-full flex items-center justify-center text-white font-bold text-base">
                       T
                     </div>
-                    <span className="text-xl font-bold text-gray-900 tracking-tight">
-                      TROS One
-                    </span>
+                    <div className="leading-tight">
+                      <p className="text-base font-bold text-gray-900">
+                        TROS One
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        Inventory Management System
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-sm text-gray-500">
-                    Inventory Management System
-                  </p>
                 </div>
-                <div className="md:text-right">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-1">
+
+                <div className="mt-4 md:mt-0 md:text-right">
+                  <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight">
                     INVOICE
                   </h2>
-                  <p className="text-base font-mono text-[#064e3b] font-bold">
+
+                  <p className="text-sm font-mono text-[#064e3b] font-bold mt-1">
                     #{activeOrder.id.slice(0, 8).toUpperCase()}
                   </p>
+
                   <span
-                    className={`inline-block mt-2 px-3 py-1 rounded-full text-xs font-bold border uppercase tracking-wider ${getStatusColor(
+                    className={`inline-block mt-2 px-3 py-1 rounded-full text-[10px] font-bold border uppercase tracking-wider ${getStatusColor(
                       activeOrder.status
                     )}`}
                   >
@@ -397,7 +409,7 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
               </div>
 
               {/* Bill To / From */}
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 mb-8 text-sm">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 mb-6 md:mb-8 text-sm">
                 <div>
                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
                     Bill To
@@ -476,7 +488,16 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
               </div>
 
               {/* Bank Details Footer */}
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start print:bg-transparent print:border-t print:border-gray-200 print:rounded-none">
+              <div
+                className="
+    bg-gray-50 border border-gray-200 rounded-xl
+    p-3 sm:p-4 md:p-6
+    flex flex-col md:flex-row
+    gap-3 md:gap-6
+    items-start
+    print:bg-transparent print:border-t print:border-gray-200 print:rounded-none
+  "
+              >
                 <div className="p-3 bg-white border border-gray-200 rounded-lg shadow-sm print:hidden">
                   <Banknote size={24} className="text-[#064e3b]" />
                 </div>
@@ -524,7 +545,7 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
           </div>
 
           {/* Footer Actions */}
-          <div className="p-6 border-t border-emerald-50 bg-white flex flex-col items-center md:flex-row md:justify-end gap-4 shrink-0 print:hidden">
+          {/* <div className="p-6 border-t border-emerald-50 bg-white flex flex-col items-center md:flex-row md:justify-end gap-4 shrink-0 print:hidden">
             <button
               onClick={() => window.print()}
               className="flex items-center justify-center gap-2 px-4 py-3 w-full max-w-[220px] md:w-auto
@@ -545,6 +566,52 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
                     handleUpdateStatus(activeOrder.id, e.target.value as any)
                   }
                   className="h-11 px-4 rounded-xl border border-gray-300 text-sm focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] outline-none bg-white font-bold"
+                >
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Hold">Hold</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+            )}
+          </div> */}
+
+          <div
+            className="p-6 border-t border-emerald-50 bg-white
+                flex items-center justify-end gap-4
+                shrink-0 print:hidden"
+          >
+            {/* Print Invoice */}
+            <button
+              onClick={() => window.print()}
+              className="flex items-center gap-2
+               px-2 py-3
+               bg-white border border-emerald-200 rounded-xl
+               text-sm font-bold text-emerald-700
+               hover:bg-emerald-50 shadow-sm transition-all"
+            >
+              <Printer size={18} />
+              Print Invoice
+            </button>
+
+            {/* Status Dropdown */}
+            {userRole === UserRole.ADMIN && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-gray-600 whitespace-nowrap">
+                  Mark as:
+                </span>
+                <select
+                  value={activeOrder.status}
+                  onChange={(e) =>
+                    handleUpdateStatus(activeOrder.id, e.target.value as any)
+                  }
+                  className="h-11 px-4 rounded-xl
+                   border border-gray-300
+                   text-sm font-bold
+                   bg-white
+                   focus:border-[#064e3b]
+                   focus:ring-1 focus:ring-[#064e3b]
+                   outline-none"
                 >
                   <option value="Pending">Pending</option>
                   <option value="In Progress">In Progress</option>

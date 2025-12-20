@@ -960,8 +960,8 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
       {/* Modals & Dialogs */}
       {isModalOpen &&
         createPortal(
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-emerald-950/40 backdrop-blur-sm animate-fade-in p-4 md:p-0">
-            <div className="bg-white w-[95%] max-h-[90vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-zoom-in md:w-full md:h-auto md:max-w-4xl border border-white/50">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-emerald-950/40 backdrop-blur-sm animate-fade-in p-2 sm:p-3 md:p-0">
+            <div className="bg-white w-full sm:w-[95%] max-h-[90vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-zoom-in md:w-full md:h-auto md:max-w-4xl border border-white/50">
               <div className="flex justify-between items-center p-6 border-b border-emerald-50 shrink-0 bg-emerald-50/30">
                 <div>
                   <h3 className="text-2xl font-bold text-[#064e3b]">
@@ -1019,7 +1019,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
                 </div>
               </div>
 
-              <div className="p-8 flex-1 overflow-y-auto custom-scrollbar bg-[#f8fafc]">
+              <div className="p-3 sm:p-4 md:p-8 flex-1 overflow-y-auto custom-scrollbar bg-[#f8fafc]">
                 {createdCredentials ? (
                   <div className="bg-white border border-emerald-100 rounded-2xl p-8 text-center max-w-sm mx-auto shadow-lg">
                     <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-600">
