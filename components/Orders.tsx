@@ -438,20 +438,22 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
               </div>
 
               {/* Items Table */}
-              <div className="mb-8 rounded-lg border border-gray-200 overflow-x-auto">
+              <div className="mb-8 rounded-lg border border-gray-200 overflow-x-auto -mx-2 sm:-mx-0">
                 <table className="min-w-[640px] w-full text-sm text-left">
                   <thead className="bg-emerald-50 text-emerald-900 uppercase text-xs font-bold tracking-wider">
                     <tr>
-                      <th className="py-4 pl-6">Description</th>
-                      <th className="py-4 text-right">Quantity</th>
-                      <th className="py-4 text-right">Unit Price</th>
-                      <th className="py-4 pr-6 text-right">Total</th>
+                      <th className="py-2 md:py-4 pl-4 md:pl-6">Description</th>
+                      <th className="py-2 md:py-4 text-right">Quantity</th>
+                      <th className="py-2 md:py-4 text-right">Unit Price</th>
+                      <th className="py-2 md:py-4 pr-4 md:pr-6 text-right">
+                        Total
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100 bg-white">
                     {activeOrder.items?.map((item, idx) => (
                       <tr key={idx}>
-                        <td className="py-3 pl-6 font-medium text-gray-900">
+                        <td className="py-3 pl-4 md:pl-6 font-medium text-gray-900">
                           {item.productName}
                         </td>
                         <td className="py-3 text-right text-gray-600">
@@ -460,7 +462,7 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
                         <td className="py-3 text-right text-gray-600">
                           ${item.price.toFixed(2)}
                         </td>
-                        <td className="py-3 pr-6 text-right font-bold text-gray-900">
+                        <td className="py-3 pr-4 md:pr-6 text-right font-bold text-gray-900">
                           ${item.total.toFixed(2)}
                         </td>
                       </tr>
