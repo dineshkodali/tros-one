@@ -103,7 +103,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
       </div>
 
       {/* 1. Key Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <StatCard 
           title="Total Revenue" 
           value={`$${(stats.revenue/1000).toFixed(1)}k`} 
@@ -141,7 +141,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
       {/* 2. Quick Functions / Redirections */}
       <div>
         <h3 className="text-lg font-bold text-[#064e3b] mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           <FunctionCard 
             title="Manage Orders" 
             desc="View pending orders, approve requests, and track shipments." 

@@ -603,11 +603,13 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
   };
 
   return (
-    <div className="space-y-6 animate-fade-in h-full flex flex-col pb-24 md:pb-0 px-2 md:px-0">
+    <div className="space-y-6 animate-fade-in h-full flex flex-col pb-24 md:pb-0 h-full flex flex-col px-1 sm:px-2 md:px-0">
+
       <input type="file" ref={fileInputRef} className="hidden" />
 
       {/* Header Section */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 bg-white p-3 md:p-4 rounded-2xl border border-emerald-100 shadow-sm">
+
         <div>
           <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-[#022c22]">
             {title}
@@ -625,7 +627,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
           {collectionName === 'products' && canAssign && <button onClick={() => setIsBulkAssignOpen(true)} className="flex-1 md:flex-none h-11 px-6 bg-white border border-emerald-200 text-emerald-700 font-bold rounded-xl hover:bg-emerald-50 transition-colors flex items-center justify-center gap-2"><Layers size={18} /> Bulk</button>}
           {canCreate && <button onClick={() => openModal()} className="flex-1 md:flex-none h-11 px-6 bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 hover:scale-105 transition-all flex items-center justify-center gap-2"><Plus size={18} /> Add New</button>}
         </div> */}
-        <div className="w-full flex flex-col gap-4 md:flex-row md:items-center md:w-auto">
+        <div className="w-full flex flex-col gap-3 md:gap-4 md:flex-row md:items-center md:w-auto">
           {/* Secondary actions */}
           <div className="flex gap-2 w-full md:w-auto">
             <button
@@ -663,7 +665,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
           )}
         </div>
       </div>
-
+      <div className="mt-0 md:mt-3">
       <FilterBar
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -674,9 +676,11 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
         sortConfig={sortConfig}
         onSortChange={(key, direction) => setSortConfig({ key, direction })}
       />
+      </div>
 
       {/* MOBILE CARD VIEW */}
-      <div className="block md:hidden space-y-4">
+      <div className="block md:hidden space-y-4 px-2 -mx-2">
+
         {loading ? (
           <div className="text-center py-12 text-emerald-400 font-medium">
             Loading items...
@@ -691,7 +695,8 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
                 setIsViewModalOpen(true);
               }}
             >
-              <div className="p-5">
+              <div className="p-3 md:p-5">
+
                 {/* Header */}
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-3">
@@ -798,7 +803,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
               </div>
 
               {/* Footer Actions */}
-              <div className="grid grid-cols-3 divide-x divide-emerald-50 border-t border-emerald-100 bg-gray-50/30">
+              <div className="grid grid-cols-3 divide-x divide-emerald-50 border-t border-emerald-100 bg-gray-50/40">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();

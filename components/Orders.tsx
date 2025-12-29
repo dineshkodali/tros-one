@@ -842,9 +842,9 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
 
   // LIST VIEW - Styled to match Inventory/ResourceManager
   return (
-    <div className="space-y-6 pb-24 md:pb-0 h-full flex flex-col">
+    <div className="space-y-6 pb-24 md:pb-0 pt-4 h-full flex flex-col">
       {/* Header Section */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm">
         <div>
           <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-[#022c22]">
             Orders
