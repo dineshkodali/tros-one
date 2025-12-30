@@ -603,7 +603,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
   };
 
   return (
-    <div className="space-y-3 md:space-y-6 animate-fade-in h-full flex flex-col pb-24 md:pb-0 h-full flex flex-col px-1 sm:px-2 md:px-0">
+    <div className="space-y-2 md:space-y-6 animate-fade-in h-full flex flex-col pb-24 md:pb-0 h-full flex flex-col px-1 sm:px-2 md:px-0">
 
       <input type="file" ref={fileInputRef} className="hidden" />
 
@@ -665,7 +665,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
           )}
         </div>
       </div>
-      <div className="mt-0 md:mt-4">
+      <div className="mt-0 md:mt-4 mb-1 md:mb-6">
       <FilterBar
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -679,7 +679,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
       </div>
 
       {/* MOBILE CARD VIEW */}
-      <div className="block md:hidden space-y-4 px-0 mt-0">
+      <div className="block md:hidden space-y-3 px-0 mt-0">
 
         {loading ? (
           <div className="text-center py-12 text-emerald-400 font-medium">

@@ -220,8 +220,8 @@ const MainLayout: React.FC = () => {
         </header>
 
         {/* Content Body - Added padding bottom for fixed nav */}
-        <main className="flex-1 overflow-y-auto custom-scrollbar pt-0 px-3 md:p-10 pb-20 md:pb-10">
-          <div className="max-w-[1600px] mx-auto w-full h-full">
+        <main className="flex-1 overflow-y-auto custom-scrollbar pt-1 px-3 md:p-10 pb-16 md:pb-10">
+          <div className="max-w-[1600px] mx-auto w-full">
              {renderContent()}
           </div>
         </main>

@@ -50,7 +50,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
   const hasActiveFilters = Object.values(filters).some(Boolean) || searchTerm;
 
   return (
-    <div className="w-full mb-4 md:mb-6">
+    <div className="w-full mb-1 md:mb-2">
       <div className="w-full md:max-w-4xl md:mx-auto flex flex-col gap-3 md:gap-4">
 
         {/* Search Row - Centered and Clean */}
