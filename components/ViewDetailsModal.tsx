@@ -265,7 +265,7 @@ const ViewDetailsModal: React.FC<ViewDetailsModalProps> = ({ isOpen, onClose, da
   return (
     <>
       <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in p-4 md:p-0">
-        <div className="bg-white w-[95%] max-h-[85vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-zoom-in md:w-full max-h-[75vh] md:h-auto md:max-w-2xl">
+        <div className="bg-white w-[95%] max-h-[85vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-zoom-in md:w-full max-h-[65vh] md:h-auto md:max-w-2xl">
           <div className="p-4 border-b flex justify-between items-center bg-gray-50/80 shrink-0">
              <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{type} DETAILS VIEW</span>
              <button onClick={onClose} className="p-2 bg-white rounded-full text-gray-400 hover:text-gray-800 hover:shadow-sm transition-all"><X size={18} /></button>
