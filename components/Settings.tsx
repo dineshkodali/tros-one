@@ -533,7 +533,7 @@ const UsersTab = () => {
       </div>
 
       {/* USERS TABLE */}
-      <div className="bg-white border border-gray-200 rounded-xl shadow-sm">
+      <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
         <div className="relative w-full overflow-x-auto">
           <table className="min-w-[640px] w-full text-left">
             <thead className="bg-gray-50 border-b border-gray-200 text-xs uppercase text-gray-500 font-semibold">

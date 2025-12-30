@@ -612,7 +612,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
 
         <div>
           <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-[#022c22]">
-            {title}
+            {/* {title} */}
             {isOfflineMode && (
               <span className="text-xs font-bold px-3 py-1 bg-amber-100 text-amber-700 rounded-full flex items-center gap-1">
                 <WifiOff size={12} /> Offline

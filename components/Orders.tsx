@@ -847,9 +847,9 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-4 rounded-2xl border border-emerald-100 shadow-sm">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-[#022c22]">
+          {/* <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-[#022c22]">
             Orders
-          </h2>
+          </h2> */}
           <p className="text-emerald-700/70 mt-1 font-medium">
             Manage and track your order fulfillments
           </p>
