@@ -339,7 +339,7 @@ const Orders: React.FC<OrdersProps> = ({ userRole }) => {
     if (!activeOrder) return null;
     return createPortal(
       <div className="fixed inset-0 z-[60] flex items-center justify-center bg-emerald-950/40 backdrop-blur-sm animate-fade-in p-2 sm:p-3 md:p-4 print:p-0 print:bg-white print:fixed print:inset-0 print:z-[9999]">
-        <div className="bg-white w-[95%] max-h-[90vh] md:max-w-4xl max-h-[65vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-zoom-in border border-white/50 print:border-none print:shadow-none print:w-full print:max-w-none print:rounded-none print:max-h-full print:h-full">
+        <div className="bg-white w-[95%] max-h-[90vh] md:max-w-4xl max-h-[55vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-zoom-in border border-white/50 print:border-none print:shadow-none print:w-full print:max-w-none print:rounded-none print:max-h-full print:h-full">
           {/* Header Actions (Hidden on Print) */}
           <div className="flex justify-between items-center p-6 border-b border-emerald-50 shrink-0 bg-emerald-50/30 print:hidden">
             <div>
